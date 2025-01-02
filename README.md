@@ -10,7 +10,7 @@ With **BubblesLayout**, it's easy!
 
 ### Quick Start
 
-Start with this simple example:
+Import `BubblesLayout` and start with this simple example:
 
 ```
 var body: some View {
