@@ -40,4 +40,5 @@ Run app in `Examples` folder.
 
 - This solution uses `SpriteKit`’s gravity logic to calculate the approximate positions of the bubbles. As a result the solution is asynchronous and cannot utilize SwiftUI’s native `Layout` system. So `BubblesLayout` is a `View`, not a `Layout`.
 - The touch areas of the bubbles may overlap, so keep that in mind.
+- Currently, the bubbles can only be circles.
 
