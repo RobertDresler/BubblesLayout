@@ -35,6 +35,7 @@ Run app in `Examples` folder.
 ## Remember
 
 - You need to specify the size of each view you want to use as a bubble (e.g. by using [`.frame(width:height:alignment:)`](https://developer.apple.com/documentation/swiftui/view/frame(width:height:alignment:))).
+- Currently, the bubble `View`s can only be circles - so clip them using `.clipShape(Circle())`
 
 ## Limitations
 
