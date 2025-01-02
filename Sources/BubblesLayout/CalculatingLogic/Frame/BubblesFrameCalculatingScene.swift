@@ -61,7 +61,7 @@ private extension BubblesFrameCalculatingScene {
             circle.physicsBody = SKPhysicsBody(circleOfRadius: radius)
             circle.physicsBody?.isDynamic = true
             circle.physicsBody?.allowsRotation = false
-            circle.physicsBody?.restitution = 1
+            circle.physicsBody?.restitution = 0.5
             addChild(circle)
         }
     }

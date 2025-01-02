@@ -9,13 +9,13 @@ public struct BubblesLayout<BubbleViews: View>: View {
     @State private var bubblesFramesNotCalculatedSizes: [CGSize]?
 
     public init(
-        minSpacing: CGFloat,
+        minSpacing: CGFloat = 0,
         @ViewBuilder bubbles: @escaping () -> BubbleViews
     ) {
         self.minSpacing = minSpacing
         self.bubbles = bubbles
     }
-    
+
     public var body: some View {
         Group {
             if let bubblesFramesNotCalculatedSizes {
