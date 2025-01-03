@@ -56,7 +56,7 @@ private extension BubblesFrameCalculatingScene {
             circle.fillColor = .blue
             circle.position = CGPoint(
                 x: frame.width / 4 * CGFloat(index % 4),
-                y: -sizes.prefix(index).map { $0.width * 0.5 + minSpacing }.reduce(0, +)
+                y: -sizes.prefix(index).map { $0.height + minSpacing }.reduce(0, +)
             )
             circle.physicsBody = SKPhysicsBody(circleOfRadius: radius)
             circle.physicsBody?.isDynamic = true
