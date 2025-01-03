@@ -53,15 +53,16 @@ private extension BubblesFrameCalculatingScene {
         sizes.enumerated().forEach { index, size in
             let radius: CGFloat = size.width / 2 + minSpacing / 2
             let circle = BubbleNode(circleOfRadius: radius)
+            let yStartingPointsCount = 3
             circle.fillColor = .blue
             circle.position = CGPoint(
-                x: frame.width / 4 * CGFloat(index % 4),
+                x: frame.width / CGFloat(yStartingPointsCount - 1) * CGFloat(index % yStartingPointsCount),
                 y: -sizes.prefix(index).map { $0.height + minSpacing }.reduce(0, +)
             )
             circle.physicsBody = SKPhysicsBody(circleOfRadius: radius)
             circle.physicsBody?.isDynamic = true
             circle.physicsBody?.allowsRotation = false
-            circle.physicsBody?.restitution = 0.5
+            circle.physicsBody?.restitution = 0.8
             addChild(circle)
         }
     }
