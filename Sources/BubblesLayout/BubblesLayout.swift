@@ -4,15 +4,18 @@ import SwiftUI
 public struct BubblesLayout<BubbleViews: View>: View {
 
     private let minSpacing: CGFloat
+    private let startingAlignment: BubblesLayoutStartingAlignment
     @ViewBuilder private let bubbles: () -> BubbleViews
     @State private var bubblesFrames: [BubbleCalculatedFrame]?
     @State private var bubblesFramesNotCalculatedSizes: [CGSize]?
 
     public init(
         minSpacing: CGFloat = 0,
+        startingAlignment: BubblesLayoutStartingAlignment = .center,
         @ViewBuilder bubbles: @escaping () -> BubbleViews
     ) {
         self.minSpacing = minSpacing
+        self.startingAlignment = startingAlignment
         self.bubbles = bubbles
     }
 
@@ -38,6 +41,7 @@ public struct BubblesLayout<BubbleViews: View>: View {
         BubblesFrameCalculatingView(
             sizes: bubblesFramesNotCalculatedSizes,
             minSpacing: minSpacing,
+            startingAlignment: startingAlignment,
             onBubblesCalculated: { newBubblesFrames in
                 guard
                     newBubblesFrames.count != bubblesFrames?.count

@@ -5,6 +5,7 @@ struct BubblesFrameCalculatingView: View {
 
     let sizes: [CGSize]
     let minSpacing: CGFloat
+    let startingAlignment: BubblesLayoutStartingAlignment
     let onBubblesCalculated: ([BubbleCalculatedFrame]) -> Void
 
     var body: some View {
@@ -20,6 +21,7 @@ struct BubblesFrameCalculatingView: View {
             containerSize: size,
             sizes: sizes,
             minSpacing: minSpacing,
+            startingAlignment: startingAlignment,
             onBubblesCalculated: onBubblesCalculated
         )
     }

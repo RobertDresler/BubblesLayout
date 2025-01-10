@@ -14,17 +14,14 @@ Import `BubblesLayout` and start with this simple example:
 
 ```
 var body: some View {
-    BubblesLayout(
-        minSpacing: 8,
-        bubbles: {
-            ForEach(["A", "B", "C"], id: \.self) { title in
-                Text(title)
-                    .frame(width: 48, height: 48)
-                    .background(.green)
-                    .clipShape(Circle())
-            }
+    BubblesLayout(minSpacing: 8) {
+        ForEach(["A", "B", "C"], id: \.self) { title in
+            Text(title)
+                .frame(width: 48, height: 48)
+                .background(.green)
+                .clipShape(Circle())
         }
-    )
+    }
 }
 ```
 

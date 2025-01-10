@@ -27,14 +27,11 @@ struct PreviewView: View {
     }
 
     private var bubblesLayout: some View {
-        BubblesLayout(
-            minSpacing: 8,
-            bubbles: {
-                ForEach(bubbles) {
-                    bubble(for: $0)
-                }
+        BubblesLayout(minSpacing: 8) {
+            ForEach(bubbles) {
+                bubble(for: $0)
             }
-        )
+        }
     }
 
     private var countSlider: some View {

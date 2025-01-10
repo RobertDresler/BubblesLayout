@@ -9,12 +9,14 @@ final class BubblesFrameCalculatingScene: SKScene {
         containerSize: CGSize,
         sizes: [CGSize],
         minSpacing: CGFloat,
+        startingAlignment: BubblesLayoutStartingAlignment,
         onBubblesCalculated: @escaping ([BubbleCalculatedFrame]) -> Void
     ) -> BubblesFrameCalculatingScene {
         let scene = BubblesFrameCalculatingScene()
         scene.size = containerSize
         scene.sizes = sizes
         scene.minSpacing = minSpacing
+        scene.startingAlignment = startingAlignment
         scene.onBubblesCalculated = onBubblesCalculated
         scene.scaleMode = .aspectFit
         return scene
@@ -22,6 +24,7 @@ final class BubblesFrameCalculatingScene: SKScene {
 
     private var sizes: [CGSize]!
     private var minSpacing: CGFloat!
+    private var startingAlignment: BubblesLayoutStartingAlignment!
     private var onBubblesCalculated: (([BubbleCalculatedFrame]) -> Void)!
 
     override func didMove(to view: SKView) {
@@ -53,10 +56,10 @@ private extension BubblesFrameCalculatingScene {
         sizes.enumerated().forEach { index, size in
             let radius: CGFloat = size.width / 2 + minSpacing / 2
             let circle = BubbleNode(circleOfRadius: radius)
-            let yStartingPointsCount = 3
+            let xPositionOffsetIndex = (index + startingAlignmentXPositionIndexOffset) % yStartingPointsCount
             circle.fillColor = .blue
             circle.position = CGPoint(
-                x: frame.width / CGFloat(yStartingPointsCount - 1) * CGFloat(index % yStartingPointsCount),
+                x: frame.width / CGFloat(yStartingPointsCount - 1) * CGFloat(xPositionOffsetIndex),
                 y: -sizes.prefix(index).map { $0.height + minSpacing }.reduce(0, +)
             )
             circle.physicsBody = SKPhysicsBody(circleOfRadius: radius)
@@ -64,6 +67,21 @@ private extension BubblesFrameCalculatingScene {
             circle.physicsBody?.allowsRotation = false
             circle.physicsBody?.restitution = 0.8
             addChild(circle)
+        }
+    }
+
+    var yStartingPointsCount: Int {
+        3
+    }
+
+    var startingAlignmentXPositionIndexOffset: Int {
+        switch startingAlignment {
+        case .left, .none:
+            0
+        case .center:
+            yStartingPointsCount / 2
+        case .right:
+            yStartingPointsCount - 1
         }
     }
 
