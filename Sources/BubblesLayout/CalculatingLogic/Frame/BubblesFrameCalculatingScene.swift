@@ -49,7 +49,7 @@ private extension BubblesFrameCalculatingScene {
             )
         )
         physicsWorld.gravity = CGVector(dx: 0, dy: 9.8)
-        physicsWorld.speed = 10000
+        physicsWorld.speed = 100
     }
 
     func addBubblesNodes() {
